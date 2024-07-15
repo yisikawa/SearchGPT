@@ -1,7 +1,7 @@
+import os
 import streamlit as st
-from openai import OpenAI
-from langchain_openai import ChatOpenAI
-#from langchain_community.chat_models import ChatOpenAI
+#from langchain_openai import ChatOpenAI
+from langchain_community.chat_models import ChatOpenAI
 from langchain_core.messages import HumanMessage
 
 
@@ -11,7 +11,8 @@ if not openai_api_key:
 else:
 
     # Create an OpenAI client.
-    client = OpenAI(api_key=openai_api_key)
+    os.environ["OPENAI_API_KEY"]=openai_api_key
+    
     st.title("🎈 langchain-streamlit-app")
 
     if "messages" not in st.session_state:
@@ -30,7 +31,7 @@ else:
 
         with st.chat_message("assistant"):
             chat_model = ChatOpenAI(
-                model = "gpt-3.5-turbo",
+                model = "gpt-3.5-turbo"
             )
             messages = [HumanMessage(content=prompt)]
             respose = chat_model.invoke(messages)
