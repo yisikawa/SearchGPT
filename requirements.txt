@@ -1,6 +1,5 @@
 os
 streamlit
-openai 
 langchain_openai
 langchain_community
 langchain_core
